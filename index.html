@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gotas de Esperança | Doação de sangue</title>
+<style>
+:root {
+  --site-primary: #b5121b;
+  --site-on-primary: #ffffff;
+  --site-secondary: #f9e9e7;
+  --site-on-secondary: #3a1718;
+  --site-background: #fffaf7;
+  --site-on-background: #252525;
+  --site-font-body: Arial, Helvetica, sans-serif;
+  --site-font-heading: Georgia, "Times New Roman", serif;
+  --site-heading-scale: 1;
+  --site-spacing-scale: 1;
+  --site-radius-scale: 1;
+  --site-decoration-opacity: 1;
+  --surface: light-dark(#ffffff, #242424);
+  --muted: light-dark(#685e5c, #c8bfbd);
+  --border: light-dark(#ead9d6, #514442);
+}
+* { box-sizing: border-box; }
+html { color-scheme: light dark; scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--site-font-body); background: var(--site-background); color: var(--site-on-background); line-height: 1.6; }
+#app { min-height: 100vh; background-color: var(--site-background); color: var(--site-on-background); border-radius: 0; }
+a { color: inherit; }
+header { background: var(--site-primary); color: var(--site-on-primary); padding: calc(1.2rem * var(--site-spacing-scale)) 5vw; }
+.nav { max-width: 1120px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.brand { font-weight: 800; font-size: 1.15rem; letter-spacing: .02em; text-decoration: none; }
+nav { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+nav a { text-decoration: none; font-size: .95rem; }
+.hero { max-width: 1120px; margin: auto; padding: clamp(3rem, 8vw, 6rem) 5vw; display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 2.5rem; }
+.kicker { color: var(--site-primary); text-transform: uppercase; font-weight: 800; letter-spacing: .13em; font-size: .78rem; }
+h1,h2,h3 { font-family: var(--site-font-heading); line-height: 1.15; }
+h1 { font-size: calc(clamp(2.5rem, 6vw, 4.8rem) * var(--site-heading-scale)); margin: .5rem 0 1rem; letter-spacing: -.04em; }
+h2 { font-size: calc(clamp(1.8rem, 3vw, 2.7rem) * var(--site-heading-scale)); margin: 0 0 1rem; }
+h3 { font-size: 1.35rem; margin: .5rem 0; }
+.lead { font-size: 1.15rem; max-width: 640px; color: var(--muted); }
+.actions { display: flex; gap: .8rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.btn { display: inline-block; padding: .85rem 1.15rem; border-radius: calc(999px * var(--site-radius-scale)); background: var(--site-primary); color: white; font-weight: 700; text-decoration: none; border: 2px solid var(--site-primary); }
+.btn.secondary { background: transparent; color: var(--site-primary); }
+.emblem { width: min(100%, 330px); aspect-ratio: 1; margin: auto; border-radius: 50%; background: var(--site-secondary); display: grid; place-items: center; position: relative; }
+.emblem svg { width: 67%; height: auto; }
+.emblem:after { content: "♥"; position: absolute; right: 3%; bottom: 8%; font-size: 4rem; color: var(--site-primary); opacity: var(--site-decoration-opacity); transform: rotate(12deg); }
+section { padding: calc(4rem * var(--site-spacing-scale)) 5vw; }
+.wrap { max-width: 1120px; margin: auto; }
+.center { text-align: center; }
+.section-intro { max-width: 700px; margin: 0 auto 2rem; color: var(--muted); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 2rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: calc(20px * var(--site-radius-scale)); padding: 1.5rem; }
+.icon { width: 48px; height: 48px; border-radius: 14px; display: grid; place-items: center; background: var(--site-secondary); color: var(--site-primary); font-size: 1.5rem; }
+.soft { background: var(--site-secondary); color: var(--site-on-secondary); }
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; counter-reset: item; }
+.step { padding: 1.4rem; background: var(--surface); border-radius: calc(16px * var(--site-radius-scale)); border: 1px solid var(--border); }
+.step strong { display: block; color: var(--site-primary); font-size: 1.05rem; margin-bottom: .5rem; }
+.callout { background: var(--site-primary); color: white; padding: 2rem; border-radius: calc(24px * var(--site-radius-scale)); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+.callout h2 { margin-bottom: .5rem; }
+.callout p { margin: 0; max-width: 650px; }
+.callout .btn { background: white; color: var(--site-primary); border-color: white; }
+.faq details { border-bottom: 1px solid var(--border); padding: 1rem 0; }
+.faq summary { cursor: pointer; font-weight: 700; }
+footer { padding: 2.5rem 5vw; background: #251b1b; color: #fff7f5; }
+footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+.small { font-size: .88rem; color: var(--muted); }
+footer .small { color: #e6d5d3; }
+@media (max-width: 760px) {
+ .hero { grid-template-columns: 1fr; text-align: center; }
+ .lead { margin-inline: auto; }
+ .actions { justify-content: center; }
+ .emblem { max-width: 240px; }
+ .cards, .steps { grid-template-columns: 1fr; }
+ nav { gap: .8rem; }
+}
+</style>
+</head>
+<body>
+<div id="app">
+<header>
+  <div class="nav">
+    <a class="brand" href="#inicio">♥ Gotas de Esperança</a>
+    <nav aria-label="Navegação principal">
+      <a href="#sobre">Sobre</a><a href="#doacao">Como funciona</a><a href="#medicamentos">Medicamentos</a><a href="#duvidas">Dúvidas</a><a href="#participar">Participe</a>
+    </nav>
+  </div>
+</header>
+<main>
+<section class="hero" id="inicio">
+  <div>
+    <div class="kicker">Informação • Conscientização • Solidariedade</div>
+    <h1>Uma gota de solidariedade pode ser o começo de uma nova vida.</h1>
+    <p class="lead">Bem-vindo ao <strong>Gotas de Esperança</strong>, um espaço para aprender, compartilhar informação confiável e incentivar a doação de sangue. Porque cuidar da vida é uma missão coletiva.</p>
+    <div class="actions">
+      <a class="btn" href="#doacao">Entenda a doação</a>
+      <a class="btn secondary" href="#participar">Ajude a espalhar</a>
+    </div>
+  </div>
+  <div class="emblem" aria-label="Símbolo de gota de sangue com coração">
+    <svg viewBox="0 0 200 230" role="img" aria-label="Gota vermelha com coração branco">
+      <path d="M100 8 C78 48 25 104 25 151 A75 75 0 0 0 175 151 C175 104 122 48 100 8Z" fill="#b5121b"/>
+      <path d="M100 91 C84 69 51 83 58 108 C62 125 100 149 100 149 C100 149 138 125 142 108 C149 83 116 69 100 91Z" fill="#ffffff"/>
+    </svg>
+  </div>
+</section>
+<section id="sobre" class="soft">
+  <div class="wrap center">
+    <div class="kicker">Nosso propósito</div>
+    <h2>Informação que aproxima. Solidariedade que transforma.</h2>
+    <p class="section-intro">O nome <strong>Gotas de Esperança</strong> representa o poder de um gesto solidário. Cada pessoa que se informa pode ajudar a derrubar mitos, incentivar conversas e fortalecer a cultura da doação voluntária.</p>
+    <div class="cards">
+      <article class="card"><div class="icon">♥</div><h3>Esperança</h3><p>Compartilhar conhecimento e lembrar que a doação pode fazer diferença para pacientes que precisam de transfusões.</p></article>
+      <article class="card"><div class="icon">✚</div><h3>Conscientização</h3><p>Explicar o processo de forma simples, respeitosa e acessível a todos os públicos.</p></article>
+      <article class="card"><div class="icon">↗</div><h3>Mobilização</h3><p>Incentivar cada leitor a buscar informações oficiais e divulgar campanhas responsáveis.</p></article>
+    </div>
+  </div>
+</section>
+<section id="doacao">
+  <div class="wrap">
+    <div class="center"><div class="kicker">Saiba mais</div><h2>Como funciona a doação de sangue?</h2><p class="section-intro">O processo é realizado por equipes de saúde treinadas. A segurança de quem doa e de quem recebe é prioridade em todas as etapas.</p></div>
+    <div class="steps">
+      <div class="step"><strong>1. Informe-se</strong>Consulte os critérios de doação e as orientações do hemocentro da sua região.</div>
+      <div class="step"><strong>2. Faça seu cadastro</strong>No local de coleta, a equipe confere seus dados e realiza uma avaliação clínica confidencial.</div>
+      <div class="step"><strong>3. Doe com segurança</strong>Se estiver apto, a doação é realizada com materiais estéreis e descartáveis. Depois, siga as orientações da equipe.</div>
+    </div>
+    <p class="small" style="margin-top:1.25rem">Os critérios de elegibilidade podem variar conforme as normas vigentes e a avaliação profissional. Nem todas as pessoas podem doar em todos os momentos.</p>
+  </div>
+</section>
+<section class="soft" id="mitos">
+  <div class="wrap">
+    <div class="center"><div class="kicker">Informação responsável</div><h2>Mitos e verdades</h2><p class="section-intro">Dúvidas são normais. Busque sempre fontes oficiais e converse com profissionais do hemocentro.</p></div>
+    <div class="cards">
+      <article class="card"><h3>“Vou ficar sem sangue?”</h3><p>O organismo repõe os componentes do sangue. A equipe avalia se você está apto e orienta os cuidados após a doação.</p></article>
+      <article class="card"><h3>“A doação é segura?”</h3><p>Os serviços de hemoterapia seguem protocolos de segurança e utilizam materiais estéreis e descartáveis.</p></article>
+      <article class="card"><h3>“Posso doar a qualquer hora?”</h3><p>É importante verificar os critérios, horários e agendamento diretamente com o hemocentro escolhido.</p></article>
+    </div>
+  </div>
+</section>
+
+<section id="medicamentos" class="soft">
+  <div class="wrap">
+    <div class="center">
+      <div class="kicker">Atenção aos medicamentos</div>
+      <h2>Semáforo da doação</h2>
+      <p class="section-intro">Alguns medicamentos ou a condição que levou ao seu uso podem alterar a aptidão para doar sangue. Esta seção é educativa: não suspenda nem altere um tratamento para tentar doar.</p>
+    </div>
+    <div class="cards">
+      <article class="card" style="border-top:6px solid #21834a">
+        <div class="icon">🟢</div><h3>Podem ser compatíveis</h3>
+        <p>O material ilustrativo cita dipirona, paracetamol, anticoncepcionais e estatinas. A possibilidade de doar depende também do motivo do uso, da dose, do estado de saúde e da avaliação da equipe.</p>
+      </article>
+      <article class="card" style="border-top:6px solid #d9a400">
+        <div class="icon">🟡</div><h3>Podem exigir avaliação ou espera</h3>
+        <p>O material cita antibióticos, corticoides e antifúngicos. O prazo depende do medicamento, da infecção ou doença tratada e das regras do hemocentro.</p>
+      </article>
+      <article class="card" style="border-top:6px solid #c92b32">
+        <div class="icon">🔴</div><h3>Exigem atenção especial</h3>
+        <p>O material cita isotretinoína, dutasterida e acitretina, que podem ter períodos específicos de inaptidão. Os prazos não são iguais para todos os medicamentos; confirme com o serviço de hemoterapia.</p>
+      </article>
+    </div>
+    <div class="card" style="margin-top:1.25rem">
+      <h3>Outros grupos que podem exigir avaliação</h3>
+      <p>O material de apoio também menciona antibióticos, antifúngicos sistêmicos, anticoagulantes, antiagregantes plaquetários, anti-inflamatórios, antiparasitários, corticosteroides sistêmicos, alguns medicamentos cardiovasculares, antipsicóticos, antidepressivos, lítio, medicamentos para emagrecimento, estimulantes do sistema nervoso central, agonistas de GLP-1, anabolizantes, anticonvulsivantes, antitireoidianos, imunossupressores e quimioterápicos.</p>
+      <p><strong>Importante:</strong> não existe uma regra única para todos esses grupos. A lista não deve ser usada como autorização ou proibição automática de doar.</p>
+    </div>
+    <div class="callout" style="margin-top:1.5rem">
+      <div><h2>Vai doar? Conte tudo na triagem.</h2><p>Informe todos os medicamentos que usa, inclusive os sem receita, além do motivo do tratamento e da data da última dose. A decisão final cabe à equipe responsável do serviço de hemoterapia.</p></div>
+      <a class="btn" href="https://www.gov.br/saude/pt-br" target="_blank" rel="noopener noreferrer">Consultar o Ministério da Saúde ↗</a>
+    </div>
+    <p class="small" style="margin-top:1rem">Os nomes e grupos acima resumem os materiais enviados pelo projeto. Prazos específicos presentes no documento não foram publicados como orientação universal, pois precisam ser confirmados com fontes oficiais atualizadas e com o hemocentro. Nunca interrompa um medicamento por conta própria.</p>
+  </div>
+</section>
+
+<section id="duvidas">
+  <div class="wrap faq">
+    <div class="kicker">Perguntas frequentes</div><h2>O que muita gente quer saber</h2>
+    <details><summary>Quem pode doar sangue?</summary><p>Em geral, pessoas que atendem aos critérios de idade, peso e condição de saúde definidos pelas normas vigentes. A aptidão final é determinada pela equipe de saúde. Consulte o hemocentro antes de ir.</p></details>
+    <details><summary>Preciso estar em jejum?</summary><p>Normalmente, não se deve doar em jejum. Siga as orientações específicas do serviço de coleta sobre alimentação e hidratação.</p></details>
+    <details><summary>Onde posso doar?</summary><p>Procure o hemocentro ou serviço de coleta oficial da sua região. Confirme endereço, horários, documentos necessários e necessidade de agendamento antes de sair de casa.</p></details>
+    <details><summary>Com que frequência posso doar?</summary><p>A frequência permitida depende de fatores como sexo, intervalo desde a última doação e normas sanitárias vigentes. A equipe do hemocentro poderá orientar você.</p></details>
+  </div>
+</section>
+<section id="participar">
+  <div class="wrap">
+    <div class="callout">
+      <div><h2>Seja parte dessa corrente de esperança.</h2><p>Converse sobre doação de sangue, compartilhe informação confiável e procure o hemocentro oficial mais próximo para saber como ajudar.</p></div>
+      <a class="btn" href="https://www.gov.br/saude/pt-br" target="_blank" rel="noopener noreferrer">Consultar fonte oficial ↗</a>
+    </div>
+    <p class="small" style="margin-top:1rem">Este blog tem finalidade educativa e não substitui avaliação médica nem as orientações oficiais dos serviços de hemoterapia. Confirme sempre as informações atualizadas com o hemocentro da sua região.</p>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap"><div><strong>♥ Gotas de Esperança</strong><div class="small">Uma gota de solidariedade pode ser o começo de uma nova vida.</div></div><div class="small">Informação • Conscientização • Solidariedade<br>Projeto educativo de incentivo à doação de sangue.</div></div>
+</footer>
+</div>
+</body>
+</html>
